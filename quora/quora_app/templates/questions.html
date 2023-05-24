@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Questions</title>
+</head>
+<body>
+    <h1>Questions</h1>
+    {% for question in questions %}
+        <h2>{{ question.title }}</h2>
+        <p>{{ question.content }}</p>
+        <p>Author: {{ question.author }}</p>
+        <p>Created at: {{ question.created_at }}</p>
+        <a href="{% url 'question_detail' question_id=question.id %}">View Details</a>
+        <hr>
+    {% endfor %}
+    <a href="{% url 'logout' %}">Logout</a>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Question Detail</title>
+</head>
+<body>
+    <h1>Question Detail</h1>
+    <h2>{{ question.title }}</h2>
+    <p>{{ question.content }}</p>
+    <p>Author: {{ question.author }}</p>
+    <p>Created at: {{ question.created_at }}</p>
+    <h3>Answers</h3>
+    {% for answer in question.answer_set.all %}
+        <p>{{ answer.content }}</p>
+        <p>Author: {{ answer.author }}</p>
+        <p>Created at: {{ answer.created_at }}</p>
+        <p>Likes: {{ answer.likes.count }}</p>
+        <a href="{% url 'like_answer' answer_id=answer.id %}">Like</a>
+        <hr>
+    {% endfor %}
+    <h3>Answer the Question</h3>
+    <form method="POST" action="{% url 'answer_question' question_id=question.id %}">
+        {% csrf_token %}
+        <textarea name="content" placeholder="Your answer"></textarea><br><br>
+        <input type="submit" value="Submit">
+    </form>
+    <br>
+    <a href="{% url 'questions' %}">Back to Questions</a>
+    <a href="{% url 'logout' %}">Logout</a>
+</body>
+</html>
+
+
+
+
+
+
+
+

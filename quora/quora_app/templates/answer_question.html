@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Answer Question</title>
+</head>
+<body>
+    <h1>Answer Question</h1>
+    <h2>{{ question.title }}</h2>
+    <p>{{ question.content }}</p>
+    <form method="POST" action="{% url 'answer_question' question_id=question.id %}">
+        {% csrf_token %}
+        <textarea name="content" placeholder="Your answer"></textarea><br><br>
+        <input type="submit" value="Submit">
+    </form>
+    <br>
+    <a href="{% url 'question_detail' question_id=question.id %}">Back to Question Detail</a>
+    <a href="{% url 'questions' %}">Back to Questions</a>
+    <a href="{% url 'logout' %}">Logout</a>
+</body>
+</html>
+
+
+
+
+
+
+
